@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 import './App.css';
-import ToDoList from './components/body/toDoList/ToDoList';
-import HeaderContainer from './components/header/HeaderContainer';
+import ToDoListContainer from './components/body/toDoList/ToDoListContainer';
+import Header from './components/header/Header';
 
-const App = (): JSX.Element => {
+const App: React.FunctionComponent = () => {
     return (
         <div className="App">
-            <HeaderContainer />
-            <ToDoList />
+            <Header />
+            <ToDoListContainer />
         </div>
     );
 };

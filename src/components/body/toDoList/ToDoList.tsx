@@ -1,19 +1,20 @@
-import * as React from 'react';
+import React from 'react';
+import NewToDoList from './NewToDoList/NewToDoList';
+import ToDoItem from './toDoItem/ToDoItem';
+import ToggleAllToDoList from './ToggleAllToDoList/ToggleAllToDoList';
 
-const ToDoList = (): JSX.Element => {
+interface Props {
+    newToDo: string | undefined;
+    onAddToDoChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    toDoItem: string[];
+}
+
+const ToDoList = ({ newToDo, onAddToDoChange, toDoItem }: Props): JSX.Element => {
     return (
         <section className="toDoList">
-            <input type="checkbox" className="toDoList__toggle-all" id="toggle-all" />
-            <label htmlFor="toggle-all">Mark all as complete</label>
-            <ul className="toDoList__list">
-                <li className="toDoList__item">
-                    <div className="toDoList__view">
-                        <input type="checkbox" className="toDoList__toggle" />
-                        <label className="toDoList__text"></label>
-                        <button className="toDoList__destroy"></button>
-                    </div>
-                </li>
-            </ul>
+            <NewToDoList newToDo={newToDo} onAddToDoChange={onAddToDoChange} />
+            <ToggleAllToDoList />
+            <ToDoItem toDoItem={toDoItem} />
         </section>
     );
 };
