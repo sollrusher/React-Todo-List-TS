@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { DataContext } from './Data/DataContext';
+import { initialState } from './Data/InitialState';
+import { State } from './entities/state/State';
+import { Action, ContextState } from './entities/action/Action';
+import { toDoReducer } from './Reducer/toDoReducer';
+
+const [state, changeState] = useReducer<React.Reducer<State, Action>>(toDoReducer, initialState);
+
+const ContextState: ContextState = {
+    state,
+    changeState,
+};
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <DataContext.Provider value={ContextState}>
+            <App />
+        </DataContext.Provider>
     </React.StrictMode>,
     document.getElementById('root'),
 );

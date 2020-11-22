@@ -1,18 +1,13 @@
 import React from 'react';
-import NewToDoList from './NewToDoList/NewToDoList';
+import { PropsToDoList } from '../../../entities/propsInterface/PropsToDoList';
+import NewToDoItem from './NewToDoList/NewToDoItem';
 import ToDoItem from './toDoItem/ToDoItem';
 import ToggleAllToDoList from './ToggleAllToDoList/ToggleAllToDoList';
 
-interface Props {
-    newToDo: string | undefined;
-    onAddToDoChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    toDoItem: string[];
-}
-
-const ToDoList = ({ newToDo, onAddToDoChange, toDoItem }: Props): JSX.Element => {
+const ToDoList: React.FC<PropsToDoList> = ({ newToDo, onAddToDoChange, toDoItem }: PropsToDoList) => {
     return (
         <section className="toDoList">
-            <NewToDoList newToDo={newToDo} onAddToDoChange={onAddToDoChange} />
+            <NewToDoItem newToDo={newToDo} onAddToDoChange={onAddToDoChange} />
             <ToggleAllToDoList />
             <ToDoItem toDoItem={toDoItem} />
         </section>

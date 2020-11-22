@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
+import { PropsNewToDoItem } from '../../../../entities/propsInterface/PropsNewToDoItem';
 
-interface Props {
-    newToDo: string | undefined;
-    onAddToDoChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-const NewToDoList = ({ newToDo, onAddToDoChange }: Props): JSX.Element => {
-    const [toDo, setToDo] = useState<string | undefined>(newToDo);
+const NewToDoItem: React.FC<PropsNewToDoItem> = ({ newToDo, onAddToDoChange }: PropsNewToDoItem) => {
+    const [toDo, setToDo] = useState<string>(newToDo);
 
     // const onToDoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //     setToDo(event.target.value);
@@ -24,4 +20,4 @@ const NewToDoList = ({ newToDo, onAddToDoChange }: Props): JSX.Element => {
         </div>
     );
 };
-export default NewToDoList;
+export default NewToDoItem;

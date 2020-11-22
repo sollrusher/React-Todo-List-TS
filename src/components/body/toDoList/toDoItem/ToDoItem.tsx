@@ -1,11 +1,7 @@
 import React from 'react';
+import { PropsToDoItem } from '../../../../entities/propsInterface/PropsToDoItem';
 
-interface Props {
-    toDoItem: string[];
-}
-
-const ToDoItem = ({ toDoItem }: Props): JSX.Element => {
-    const viewtoDoItem = toDoItem.map((a) => a);
+const ToDoItem: React.FC<PropsToDoItem> = ({ toDoItem }: PropsToDoItem) => {
     return (
         <div>
             <ul className="toDoList__list">

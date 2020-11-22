@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ToggleAllToDoList = (): JSX.Element => {
+const ToggleAllToDoList: React.FC = () => {
     return (
         <div>
             <input type="checkbox" className="toDoList__toggle-all" id="toggle-all" />
