@@ -11,7 +11,7 @@ export enum ActionType {
 
 type ActionStringPayload = {
     type: ActionType.Add | ActionType.Change;
-    payload: string;
+    payload: string | undefined;
 };
 
 type ActionObjectPayload = {

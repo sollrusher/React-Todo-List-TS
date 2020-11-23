@@ -1,7 +1,7 @@
-import { ToDoItem } from '../state/ToDoItem';
+import { ListToDoItems } from '../state/ListToDoItems';
 
 export interface PropsToDoList {
-    newToDo: string;
-    onAddToDoChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    toDoItem: ToDoItem | undefined;
+    newToDo: string | undefined;
+    onAddToDoChange: (event: React.ChangeEvent<HTMLInputElement>, toDoName: string | undefined) => void;
+    toDoListItems: ListToDoItems | undefined;
 }

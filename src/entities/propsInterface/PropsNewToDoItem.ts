@@ -1,4 +1,4 @@
 export interface PropsNewToDoItem {
-    newToDo: string;
-    onAddToDoChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    newToDo: string | undefined;
+    onAddToDoChange: (event: React.ChangeEvent<HTMLInputElement>, toDoName: string | undefined) => void;
 }

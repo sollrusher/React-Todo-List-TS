@@ -1,23 +1,27 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { DataContext } from '../../../Data/DataContext';
-import { ToDoItem } from '../../../entities/state/ToDoItem';
+import { ActionType } from '../../../entities/action/Action';
 import ToDoList from './ToDoList';
 
 const ToDoListContainer: React.FC = () => {
-    const state = useContext(DataContext);
+    const { state, changeState } = useContext(DataContext);
+    const newToDo = state?.newToDo;
 
-    const toDoItem: ToDoItem | undefined = state.toDoList;
-    const toggle: boolean | undefined = state.toggle;
-    const [newToDo, setToDo] = useState<string>('');
+    const toDoListItems = state?.toDoList;
 
-    const onAddToDoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setToDo(event.target.value);
-        // toDoItem?.push({ name: newToDo, flag: false });
+    const onAddToDoChange = (event: React.ChangeEvent<HTMLInputElement>, toDoName: string | undefined) => {
+        if (!changeState) {
+            return;
+        }
+
+        changeState({ type: ActionType.Change, payload: event.target.value });
+        // changeState({ type: ActionType.Add, payload: toDoName });
+        // changeState({ type: ActionType.Change, payload: '' });
     };
 
     return (
         <section className="toDoList__container">
-            <ToDoList newToDo={newToDo} onAddToDoChange={onAddToDoChange} toDoItem={toDoItem} />
+            <ToDoList newToDo={newToDo} onAddToDoChange={onAddToDoChange} toDoListItems={toDoListItems} />
         </section>
     );
 };

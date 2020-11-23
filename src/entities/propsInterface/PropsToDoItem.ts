@@ -1,5 +1,4 @@
-import { ToDoItem } from '../state/ToDoItem';
-
 export interface PropsToDoItem {
-    toDoItem: ToDoItem | undefined;
+    toDoItem: string | undefined;
+    isDone: boolean;
 }

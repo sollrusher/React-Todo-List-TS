@@ -1,4 +1,4 @@
 export type ToDoItem = {
-    name: string;
+    name: string | undefined;
     isDone: boolean;
 };
