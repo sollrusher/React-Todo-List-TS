@@ -17,10 +17,12 @@ const ToDoListContainer: React.FC = () => {
         changeState({ type: ActionType.Change, payload: event.target.value });
     };
 
-    const addToDo = (event: React.FocusEvent<HTMLInputElement>, toDoName: string | undefined) => {
+    const addToDo = (event: React.FormEvent<HTMLFormElement>, toDoName: string | undefined) => {
         if (!changeState) {
             return;
         }
+        event.preventDefault();
+
         changeState({ type: ActionType.Add, payload: toDoName });
         changeState({ type: ActionType.Change, payload: '' });
     };
