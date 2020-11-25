@@ -9,19 +9,30 @@ const ToDoListContainer: React.FC = () => {
 
     const toDoListItems = state?.toDoList;
 
-    const onAddToDoChange = (event: React.ChangeEvent<HTMLInputElement>, toDoName: string | undefined) => {
+    const onAddToDoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!changeState) {
             return;
         }
 
         changeState({ type: ActionType.Change, payload: event.target.value });
-        // changeState({ type: ActionType.Add, payload: toDoName });
-        // changeState({ type: ActionType.Change, payload: '' });
+    };
+
+    const addToDo = (event: React.FocusEvent<HTMLInputElement>, toDoName: string | undefined) => {
+        if (!changeState) {
+            return;
+        }
+        changeState({ type: ActionType.Add, payload: toDoName });
+        changeState({ type: ActionType.Change, payload: '' });
     };
 
     return (
         <section className="toDoList__container">
-            <ToDoList newToDo={newToDo} onAddToDoChange={onAddToDoChange} toDoListItems={toDoListItems} />
+            <ToDoList
+                newToDo={newToDo}
+                onAddToDoChange={onAddToDoChange}
+                addToDo={addToDo}
+                toDoListItems={toDoListItems}
+            />
         </section>
     );
 };
