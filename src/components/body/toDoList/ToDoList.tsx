@@ -4,15 +4,22 @@ import NewToDoItem from './NewToDoList/NewToDoItem';
 import ToDoItem from './toDoItem/ToDoItem';
 import ToggleAllToDoList from './ToggleAllToDoList/ToggleAllToDoList';
 
-const ToDoList: React.FC<PropsToDoList> = ({ newToDo, onAddToDoChange, addToDo, toDoListItems }: PropsToDoList) => {
+const ToDoList: React.FC<PropsToDoList> = ({
+    newToDo,
+    onAddToDoChange,
+    addToDo,
+    toDoListItems,
+    removeToDo,
+    toggleReadiness,
+}: PropsToDoList) => {
     const toDoItemComponent = toDoListItems?.map((toDoItem, i) => (
-        <ToDoItem key={i} toDoItem={toDoItem.name} isDone={toDoItem.isDone} />
+        <ToDoItem key={i} toDoItem={toDoItem.name} isDone={toDoItem.isDone} removeToDo={removeToDo} />
     ));
 
     return (
         <section className="toDoList">
             <NewToDoItem newToDo={newToDo} onAddToDoChange={onAddToDoChange} addToDo={addToDo} />
-            <ToggleAllToDoList />
+            <ToggleAllToDoList toggleReadiness={toggleReadiness} />
             {toDoItemComponent}
         </section>
     );

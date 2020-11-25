@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../../../Data/DataContext';
 import { ActionType } from '../../../entities/action/Action';
+import { ToDoItem } from '../../../entities/state/ToDoItem';
 import ToDoList from './ToDoList';
 
 const ToDoListContainer: React.FC = () => {
@@ -27,6 +28,20 @@ const ToDoListContainer: React.FC = () => {
         changeState({ type: ActionType.Change, payload: '' });
     };
 
+    const removeToDo = (toDoForRemove: ToDoItem) => {
+        if (!changeState) {
+            return;
+        }
+        changeState({ type: ActionType.Remove, payload: toDoForRemove });
+    };
+
+    const toggleReadiness = (toDoForChange: ToDoItem) => {
+        if (!changeState) {
+            return;
+        }
+        changeState({ type: ActionType.Toggle, payload: toDoForChange });
+    };
+
     return (
         <section className="toDoList__container">
             <ToDoList
@@ -34,6 +49,8 @@ const ToDoListContainer: React.FC = () => {
                 onAddToDoChange={onAddToDoChange}
                 addToDo={addToDo}
                 toDoListItems={toDoListItems}
+                removeToDo={removeToDo}
+                toggleReadiness={toggleReadiness}
             />
         </section>
     );
