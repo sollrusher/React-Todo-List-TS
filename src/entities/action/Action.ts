@@ -7,6 +7,9 @@ export enum ActionType {
     Change = 'Change',
     Remove = 'Remove',
     Toggle = 'Toggle',
+    All = 'All',
+    Active = 'Active',
+    Completed = 'Completed',
 }
 
 type ActionStringPayload = {
@@ -19,7 +22,11 @@ type ActionObjectPayload = {
     payload: ToDoItem;
 };
 
-export type Action = ActionStringPayload | ActionObjectPayload;
+type ActionBooleanPayload = {
+    type: ActionType.Active | ActionType.Completed | ActionType.All;
+};
+
+export type Action = ActionStringPayload | ActionObjectPayload | ActionBooleanPayload;
 
 export type ContextState = {
     state: State;

@@ -1,19 +1,20 @@
-import * as React from 'react';
+import React from 'react';
+import { PropsFooter } from '../../entities/propsInterface/PropsFooter';
 
-const Footer = (): JSX.Element => {
+const Footer: React.FC<PropsFooter> = ({ onAll, onActive, onCompleted, onClearAllCompleted }: PropsFooter) => {
     return (
-        <section className="toDoList">
-            <input type="checkbox" className="toDoList__toggle-all" id="toggle-all" />
-            <label htmlFor="toggle-all">Mark all as complete</label>
-            <ul className="toDoList__list">
-                <li className="toDoList__item">
-                    <div className="toDoList__view">
-                        <input type="checkbox" className="toDoList__toggle" />
-                        <label className="toDoList__text"></label>
-                        <button className="toDoList__destroy"></button>
-                    </div>
-                </li>
+        <section className="footer">
+            <span className="footer__todo-count">
+                <strong></strong>
+            </span>
+            <ul className="footer__filters">
+                <li className="footer__text" onClick={onAll}></li>
+                <li className="footer__text" onClick={onActive}></li>
+                <li className="footer__text" onClick={onCompleted}></li>
             </ul>
+            <button className="footer__clear-completed" onClick={onClearAllCompleted}>
+                Clear completed[<span className="footer__completed-count"></span>]
+            </button>
         </section>
     );
 };

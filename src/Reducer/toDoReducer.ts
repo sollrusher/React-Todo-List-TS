@@ -32,6 +32,15 @@ export const toDoReducer: React.Reducer<State, Action> = (state, action): State 
                 ],
             };
         }
+        case ActionType.All: {
+            return { ...state, toDoList: [...state.toDoList] };
+        }
+        case ActionType.Active: {
+            return { ...state, toDoList: [...state.toDoList.filter((active) => active.isDone === false)] };
+        }
+        case ActionType.Completed: {
+            return { ...state, toDoList: [...state.toDoList.filter((active) => active.isDone === true)] };
+        }
         default:
             throw new Error('Unexpected action');
     }

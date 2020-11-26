@@ -3,6 +3,7 @@ import { DataContext } from '../../../Data/DataContext';
 import { ActionType } from '../../../entities/action/Action';
 import { ToDoItem } from '../../../entities/state/ToDoItem';
 import ToDoList from './ToDoList';
+import ToDoItems from './toDoItems/ToDoItems';
 
 const ToDoListContainer: React.FC = () => {
     const { state, changeState } = useContext(DataContext);
@@ -14,7 +15,6 @@ const ToDoListContainer: React.FC = () => {
         if (!changeState) {
             return;
         }
-
         changeState({ type: ActionType.Change, payload: event.target.value });
     };
 
@@ -23,7 +23,6 @@ const ToDoListContainer: React.FC = () => {
             return;
         }
         event.preventDefault();
-
         changeState({ type: ActionType.Add, payload: toDoName });
         changeState({ type: ActionType.Change, payload: '' });
     };
@@ -32,15 +31,28 @@ const ToDoListContainer: React.FC = () => {
         if (!changeState) {
             return;
         }
+
         changeState({ type: ActionType.Remove, payload: toDoForRemove });
+        console.log('remove');
     };
 
     const toggleReadiness = (toDoForChange: ToDoItem) => {
         if (!changeState) {
             return;
         }
+
         changeState({ type: ActionType.Toggle, payload: toDoForChange });
+        console.log('toggle');
     };
+    const toDoItemComponent = toDoListItems?.map((toDoItem, i) => (
+        <ToDoItems
+            key={i}
+            toDoItem={toDoItem.name}
+            isDone={toDoItem.isDone}
+            removeToDo={removeToDo}
+            toggleReadiness={toggleReadiness}
+        />
+    ));
 
     return (
         <section className="toDoList__container">
@@ -48,9 +60,7 @@ const ToDoListContainer: React.FC = () => {
                 newToDo={newToDo}
                 onAddToDoChange={onAddToDoChange}
                 addToDo={addToDo}
-                toDoListItems={toDoListItems}
-                removeToDo={removeToDo}
-                toggleReadiness={toggleReadiness}
+                toDoItemComponent={toDoItemComponent}
             />
         </section>
     );
