@@ -10,6 +10,7 @@ export enum ActionType {
     All = 'All',
     Active = 'Active',
     Completed = 'Completed',
+    ClearAllCompleted = 'onClearAllCompleted',
 }
 
 type ActionStringPayload = {
@@ -22,11 +23,11 @@ type ActionObjectPayload = {
     payload: ToDoItem;
 };
 
-type ActionBooleanPayload = {
-    type: ActionType.Active | ActionType.Completed | ActionType.All;
+type ActionVoidPayload = {
+    type: ActionType.Active | ActionType.Completed | ActionType.All | ActionType.ClearAllCompleted;
 };
 
-export type Action = ActionStringPayload | ActionObjectPayload | ActionBooleanPayload;
+export type Action = ActionStringPayload | ActionObjectPayload | ActionVoidPayload;
 
 export type ContextState = {
     state: State;

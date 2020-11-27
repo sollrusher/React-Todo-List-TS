@@ -7,25 +7,8 @@ import ToDoItems from './toDoItems/ToDoItems';
 
 const ToDoListContainer: React.FC = () => {
     const { state, changeState } = useContext(DataContext);
-    const newToDo = state?.newToDo;
 
     const toDoListItems = state?.toDoList;
-
-    const onAddToDoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (!changeState) {
-            return;
-        }
-        changeState({ type: ActionType.Change, payload: event.target.value });
-    };
-
-    const addToDo = (event: React.FormEvent<HTMLFormElement>, toDoName: string | undefined) => {
-        if (!changeState) {
-            return;
-        }
-        event.preventDefault();
-        changeState({ type: ActionType.Add, payload: toDoName });
-        changeState({ type: ActionType.Change, payload: '' });
-    };
 
     const removeToDo = (toDoForRemove: ToDoItem) => {
         if (!changeState) {
@@ -56,12 +39,7 @@ const ToDoListContainer: React.FC = () => {
 
     return (
         <section className="toDoList__container">
-            <ToDoList
-                newToDo={newToDo}
-                onAddToDoChange={onAddToDoChange}
-                addToDo={addToDo}
-                toDoItemComponent={toDoItemComponent}
-            />
+            <ToDoList {...state} toDoItemComponent={toDoItemComponent} />
         </section>
     );
 };

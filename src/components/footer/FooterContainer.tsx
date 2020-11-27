@@ -27,9 +27,20 @@ const ToDoListContainer: React.FC = () => {
         changeState({ type: ActionType.Completed });
     };
 
+    const onClearAllCompleted = () => {
+        if (!changeState) {
+            return;
+        }
+    };
+
     return (
         <section className="toDoList__container">
-            <Footer onAll={onAll} onActive={onActive} onCompleted={onCompleted} />
+            <Footer
+                onAll={onAll}
+                onActive={onActive}
+                onCompleted={onCompleted}
+                onClearAllCompleted={onClearAllCompleted}
+            />
         </section>
     );
 };

@@ -1,7 +1,8 @@
 import React, { useReducer } from 'react';
 import './App.css';
 import ToDoListContainer from './components/body/toDoList/ToDoListContainer';
-import Header from './components/header/Header';
+import HeaderContainer from './components/header/HeaderContainer';
+import FooterContainer from './components/footer/FooterContainer';
 import { DataContext } from './Data/DataContext';
 import { initialState } from './Data/InitialState';
 import { Action, ContextState } from './entities/action/Action';
@@ -19,8 +20,9 @@ const App: React.FunctionComponent = () => {
     return (
         <DataContext.Provider value={contextState}>
             <div className="App">
-                <Header />
+                <HeaderContainer />
                 <ToDoListContainer />
+                <FooterContainer />
             </div>
         </DataContext.Provider>
     );
