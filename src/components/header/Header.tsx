@@ -5,10 +5,10 @@ const Header: React.FunctionComponent<PropsNewToDoItem> = ({ newToDo, onAddToDoC
     return (
         <header>
             <h1 className="header__title">todos</h1>
-            <form onSubmit={(e) => addToDo(e, newToDo)}>
+            <form className="header__newTodo" onSubmit={(e) => addToDo(e, newToDo)}>
                 <input
                     type="text"
-                    className="toDoList__input"
+                    className="header__input header__input-edit"
                     placeholder="What need to be done?"
                     onChange={(e) => onAddToDoChange(e)}
                     value={newToDo}

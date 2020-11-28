@@ -4,7 +4,9 @@ import { ActionType } from '../../entities/action/Action';
 import Footer from './Footer';
 
 const ToDoListContainer: React.FC = () => {
-    const { changeState } = useContext(DataContext);
+    const { state, changeState } = useContext(DataContext);
+    const allToDoCounter = state?.toDoList.length;
+    const completedCounter = state?.toDoList.filter((a) => a.isDone === true);
 
     const onAll = () => {
         if (!changeState) {
@@ -40,6 +42,8 @@ const ToDoListContainer: React.FC = () => {
                 onActive={onActive}
                 onCompleted={onCompleted}
                 onClearAllCompleted={onClearAllCompleted}
+                allToDoCounter={allToDoCounter}
+                completedCounter={completedCounter?.length}
             />
         </section>
     );

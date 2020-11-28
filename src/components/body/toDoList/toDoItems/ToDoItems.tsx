@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropsToDoItem } from '../../../../entities/propsInterface/PropsToDoItem';
 
-const ToDoItem: React.FC<PropsToDoItem> = ({ toDoItem, isDone, removeToDo, toggleReadiness }: PropsToDoItem) => {
+const ToDoItem: React.FC<PropsToDoItem> = ({ id, toDoItem, isDone, removeToDo, toggleReadiness }: PropsToDoItem) => {
     return (
         <div>
             <ul className="toDoList__list">
@@ -10,13 +10,13 @@ const ToDoItem: React.FC<PropsToDoItem> = ({ toDoItem, isDone, removeToDo, toggl
                         <input
                             type="checkbox"
                             className="toDoList__toggle"
-                            onChange={() => toggleReadiness({ name: toDoItem, isDone: isDone })}
+                            onChange={() => toggleReadiness({ id: id, name: toDoItem, isDone: isDone })}
                             defaultChecked={isDone}
                         />
                         <label className="toDoList__text">{toDoItem}</label>
                         <button
                             className="toDoList__destroy"
-                            onClick={() => removeToDo({ name: toDoItem, isDone: isDone })}
+                            onClick={() => removeToDo({ id: id, name: toDoItem, isDone: isDone })}
                         ></button>
                     </div>
                 </li>

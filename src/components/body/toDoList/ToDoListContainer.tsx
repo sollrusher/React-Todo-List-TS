@@ -30,6 +30,7 @@ const ToDoListContainer: React.FC = () => {
     const toDoItemComponent = toDoListItems?.map((toDoItem, i) => (
         <ToDoItems
             key={i}
+            id={toDoItem.id}
             toDoItem={toDoItem.name}
             isDone={toDoItem.isDone}
             removeToDo={removeToDo}

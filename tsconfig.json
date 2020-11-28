@@ -10,7 +10,7 @@
     ],
     "sourceMap": true,
     "allowJs": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src",
     "noImplicitReturns": true,

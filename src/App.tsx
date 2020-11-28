@@ -19,7 +19,7 @@ const App: React.FunctionComponent = () => {
 
     return (
         <DataContext.Provider value={contextState}>
-            <div className="App">
+            <div className="toDo__App">
                 <HeaderContainer />
                 <ToDoListContainer />
                 <FooterContainer />

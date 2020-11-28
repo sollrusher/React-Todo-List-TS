@@ -10,6 +10,7 @@ export const toDoReducer: React.Reducer<State, Action> = (state, action): State 
                 toDoList: [
                     ...state.toDoList,
                     {
+                        id: `f${(+new Date()).toString(16)}`,
                         name: action.payload,
                         isDone: false,
                     },
@@ -20,14 +21,17 @@ export const toDoReducer: React.Reducer<State, Action> = (state, action): State 
             return { ...state, newToDo: action.payload };
         }
         case ActionType.Remove: {
-            return { ...state, toDoList: [...state.toDoList.filter((toDo) => toDo.name !== action.payload.name)] };
+            return {
+                ...state,
+                toDoList: [...state.toDoList.filter((toDo) => toDo.id !== action.payload.id)],
+            };
         }
         case ActionType.Toggle: {
             return {
                 ...state,
                 toDoList: [
                     ...state.toDoList.map((toDo) =>
-                        toDo !== action.payload ? toDo : { ...toDo, isDone: !toDo.isDone },
+                        toDo.id !== action.payload.id ? toDo : { ...toDo, isDone: !toDo.isDone },
                     ),
                 ],
             };
