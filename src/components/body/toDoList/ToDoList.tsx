@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { PropsToDoList } from '../../../entities/propsInterface/PropsToDoList';
 import ToggleAllToDoList from './ToggleAllToDoList/ToggleAllToDoList';
 
-const ToDoList: React.FC<PropsToDoList> = ({ toDoItemComponent }: PropsToDoList) => {
+const ToDoList: React.FC<PropsToDoList> = ({ toDoItemComponent, toggleAllReadiness }: PropsToDoList) => {
     return (
         <section className="toDoList hidden">
-            <ToggleAllToDoList />
+            <ToggleAllToDoList toggleAllReadiness={toggleAllReadiness} />
             {toDoItemComponent}
         </section>
     );
 };
-export default ToDoList;
+export default memo(ToDoList);

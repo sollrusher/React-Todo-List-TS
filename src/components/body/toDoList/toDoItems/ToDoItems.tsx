@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { PropsToDoItem } from '../../../../entities/propsInterface/PropsToDoItem';
 
 const ToDoItem: React.FC<PropsToDoItem> = ({ id, toDoItem, isDone, removeToDo, toggleReadiness }: PropsToDoItem) => {
@@ -10,7 +10,8 @@ const ToDoItem: React.FC<PropsToDoItem> = ({ id, toDoItem, isDone, removeToDo, t
                         <input
                             type="checkbox"
                             className="toDoList__toggle"
-                            onChange={() => toggleReadiness({ id: id, name: toDoItem, isDone: isDone })}
+                            onClick={() => toggleReadiness({ id: id, name: toDoItem, isDone: isDone })}
+                            name={toDoItem}
                             defaultChecked={isDone}
                         />
                         <label className="toDoList__text">{toDoItem}</label>
@@ -24,4 +25,4 @@ const ToDoItem: React.FC<PropsToDoItem> = ({ id, toDoItem, isDone, removeToDo, t
         </div>
     );
 };
-export default ToDoItem;
+export default memo(ToDoItem);

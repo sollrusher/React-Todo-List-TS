@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { PropsNewToDoItem } from '../../entities/propsInterface/PropsNewToDoItem';
 
 const Header: React.FunctionComponent<PropsNewToDoItem> = ({ newToDo, onAddToDoChange, addToDo }: PropsNewToDoItem) => {
@@ -17,4 +17,4 @@ const Header: React.FunctionComponent<PropsNewToDoItem> = ({ newToDo, onAddToDoC
         </header>
     );
 };
-export default Header;
+export default memo(Header);

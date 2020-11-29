@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { DataContext } from '../../Data/DataContext';
 import { ActionType } from '../../entities/action/Action';
 import Footer from './Footer';
@@ -33,19 +33,20 @@ const ToDoListContainer: React.FC = () => {
         if (!changeState) {
             return;
         }
+        changeState({ type: ActionType.ClearAllCompleted });
     };
 
     return (
         <section className="toDoList__container">
             <Footer
+                allToDoCounter={allToDoCounter}
                 onAll={onAll}
                 onActive={onActive}
                 onCompleted={onCompleted}
                 onClearAllCompleted={onClearAllCompleted}
-                allToDoCounter={allToDoCounter}
                 completedCounter={completedCounter?.length}
             />
         </section>
     );
 };
-export default ToDoListContainer;
+export default memo(ToDoListContainer);

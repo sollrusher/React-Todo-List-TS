@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { DataContext } from '../../Data/DataContext';
 import { ActionType } from '../../entities/action/Action';
 import Header from './Header';
@@ -28,4 +28,4 @@ const ToDoListContainer: React.FC = () => {
         </section>
     );
 };
-export default ToDoListContainer;
+export default memo(ToDoListContainer);

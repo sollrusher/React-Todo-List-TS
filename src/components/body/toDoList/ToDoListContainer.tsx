@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { DataContext } from '../../../Data/DataContext';
 import { ActionType } from '../../../entities/action/Action';
 import { ToDoItem } from '../../../entities/state/ToDoItem';
@@ -16,7 +16,6 @@ const ToDoListContainer: React.FC = () => {
         }
 
         changeState({ type: ActionType.Remove, payload: toDoForRemove });
-        console.log('remove');
     };
 
     const toggleReadiness = (toDoForChange: ToDoItem) => {
@@ -25,8 +24,16 @@ const ToDoListContainer: React.FC = () => {
         }
 
         changeState({ type: ActionType.Toggle, payload: toDoForChange });
-        console.log('toggle');
     };
+
+    const toggleAllReadiness = () => {
+        if (!changeState) {
+            return;
+        }
+
+        changeState({ type: ActionType.ToggleAll });
+    };
+
     const toDoItemComponent = toDoListItems?.map((toDoItem, i) => (
         <ToDoItems
             key={i}
@@ -40,8 +47,8 @@ const ToDoListContainer: React.FC = () => {
 
     return (
         <section className="toDoList__container">
-            <ToDoList {...state} toDoItemComponent={toDoItemComponent} />
+            <ToDoList {...state} toDoItemComponent={toDoItemComponent} toggleAllReadiness={toggleAllReadiness} />
         </section>
     );
 };
-export default ToDoListContainer;
+export default memo(ToDoListContainer);

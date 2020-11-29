@@ -10,7 +10,8 @@ export enum ActionType {
     All = 'All',
     Active = 'Active',
     Completed = 'Completed',
-    ClearAllCompleted = 'onClearAllCompleted',
+    ClearAllCompleted = 'ClearAllCompleted',
+    ToggleAll = 'ToggleAllReadiness',
 }
 
 type ActionStringPayload = {
@@ -24,7 +25,12 @@ type ActionObjectPayload = {
 };
 
 type ActionVoidPayload = {
-    type: ActionType.Active | ActionType.Completed | ActionType.All | ActionType.ClearAllCompleted;
+    type:
+        | ActionType.Active
+        | ActionType.Completed
+        | ActionType.All
+        | ActionType.ClearAllCompleted
+        | ActionType.ToggleAll;
 };
 
 export type Action = ActionStringPayload | ActionObjectPayload | ActionVoidPayload;
